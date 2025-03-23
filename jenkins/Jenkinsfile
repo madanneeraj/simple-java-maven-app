@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' // Ensure this matches your configured Maven installation name
+        maven 'maven' // Ensure this matches the exact Maven installation name in Jenkins Tools config
     }
 
     environment {
-        PATH = "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/maven/bin"
+        PATH = "$PATH:/usr/local/bin:/usr/share/maven/bin"
     }
 
     stages {
@@ -30,18 +30,17 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
+                echo '🚀 Deploying application...'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
+            echo '✅ Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed! Check logs for errors.'
+            echo '❌ Pipeline failed! Check logs for errors.'
         }
     }
 }
-
